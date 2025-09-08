@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ff7a00" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/assets/icon-192.png" />
+  <title>Dawiyat Maps PDF - ODB Search</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <!-- PDF.js via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.5.136/pdf.min.js" integrity="sha512-UlI3T5JQThnDvOoD12oqliQDXv+oylrxTj9o038XFzJARRFOASt8I3mTnglFJR7O1zNi2VVkzO2c1kYEbzI4/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    // Configure PDF.js worker
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.5.136/pdf.worker.min.js';
+  </script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="logo-wrap">
+      <img src="/assets/dawiyat_logo.svg" alt="Dawiyat Logo" class="logo" />
+      <h1 class="app-title">Dawiyat Maps PDF – ODB Search</h1>
+    </div>
+    <div class="credit">Made with care by <strong>Nouman</strong></div>
+  </header>
+
+  <main class="app-main">
+    <aside class="sidebar">
+      <div class="auth-panel" id="authPanel">
+        <h2>Sign in</h2>
+        <p class="muted">Authorized accounts only</p>
+        <form id="loginForm">
+          <label>
+            Username
+            <input type="text" id="username" autocomplete="username" required />
+          </label>
+          <label>
+            Password
+            <input type="password" id="password" autocomplete="current-password" required />
+          </label>
+          <button type="submit" class="btn btn-primary">Sign in</button>
+          <p id="loginError" class="error" role="alert"></p>
+        </form>
+      </div>
+
+      <div class="search-panel hidden" id="searchPanel">
+        <h2>ODB Search</h2>
+        <form id="searchForm" autocomplete="off" novalidate>
+          <div class="input-row">
+            <input id="queryInput" type="text" placeholder="Enter ODB ID (e.g. D0309420201)" maxlength="11" inputmode="latin" autocapitalize="characters" />
+            <button id="searchBtn" type="submit" class="btn btn-primary">Search</button>
+          </div>
+          <p id="queryHint" class="hint">ODB ID must start with letter D and be exactly 11 characters.</p>
+          <p id="queryError" class="error" role="alert"></p>
+        </form>
+
+        <div class="controls">
+          <button id="zoomInBtn" class="btn btn-orange" title="Zoom in">Zoom +</button>
+          <button id="zoomOutBtn" class="btn btn-orange" title="Zoom out">Zoom −</button>
+          <button id="resetBtn" class="btn btn-orange" title="Reset view">Reset</button>
+          <button id="copyBtn" class="btn btn-orange" title="Copy result as image">Copy Result</button>
+        </div>
+
+        <div class="summary" id="summaryBox">
+          <h3>Result summary</h3>
+          <div id="summaryContent" class="summary-content">
+            <p class="muted">No search yet.</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="viewer">
+      <div class="canvas-wrap" id="canvasWrap">
+        <canvas id="pdfCanvas" width="1200" height="900"></canvas>
+        <canvas id="overlayCanvas" width="1200" height="900" class="overlay"></canvas>
+      </div>
+      <div id="loading" class="loading hidden">Loading…</div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>© <span id="year"></span> Dawiyat Maps PDF • Built as a PWA • Offline-ready UI • Storage via Supabase • Credit: Nouman</small>
+  </footer>
+
+  <script src="/config.js"></script>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>

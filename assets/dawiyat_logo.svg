@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="48" viewBox="0 0 180 48" fill="none" role="img" aria-label="Dawiyat">
+  <rect width="180" height="48" rx="8" fill="#f2f2f2"/>
+  <circle cx="24" cy="24" r="18" fill="#ff7a00"/>
+  <circle cx="24" cy="24" r="10" fill="#ffffff"/>
+  <text x="48" y="30" font-size="20" font-weight="700" font-family="Segoe UI, Arial, sans-serif" fill="#1f2937">Dawiyat</text>
+</svg>
